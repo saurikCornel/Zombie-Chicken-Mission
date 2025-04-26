@@ -100,56 +100,50 @@ struct DynamicLoader: View {
                             )
                             .blur(radius: 5)
 
-                        Circle()
-                            .trim(from: 0.0, to: 0.7)
-                            .stroke(
-                                AngularGradient(
-                                    gradient: Gradient(colors: [
-                                        Color.green.opacity(0.8),
-                                        Color.red.opacity(0.6),
-                                        Color.green.opacity(0.4)
-                                    ]),
-                                    center: .center
-                                ),
-                                style: StrokeStyle(
-                                    lineWidth: 6,
-                                    lineCap: .round,
-                                    dash: [5, 10]
-                                )
-                            )
-                            .frame(width: 60, height: 60)
-                            .rotationEffect(Angle(degrees: Double(rotationAngle)))
-                            .shadow(color: .green.opacity(0.3), radius: 10, x: 0, y: 0)
-                            .animation(
-                                Animation.easeInOut(duration: 2)
-                                    .repeatForever(autoreverses: false),
-                                value: rotationAngle
-                            )
-                            .onAppear {
-                                rotationAngle = 360
-                            }
+//                        Circle()
+//                            .trim(from: 0.0, to: 0.7)
+//                            .stroke(
+//                                AngularGradient(
+//                                    gradient: Gradient(colors: [
+//                                        Color.green.opacity(0.8),
+//                                        Color.red.opacity(0.6),
+//                                        Color.green.opacity(0.4)
+//                                    ]),
+//                                    center: .center
+//                                ),
+//                                style: StrokeStyle(
+//                                    lineWidth: 6,
+//                                    lineCap: .round,
+//                                    dash: [5, 10]
+//                                )
+//                            )
+//                            .frame(width: 60, height: 60)
+//                            .rotationEffect(Angle(degrees: Double(rotationAngle)))
+//                            .shadow(color: .green.opacity(0.3), radius: 10, x: 0, y: 0)
+//                            .animation(
+//                                Animation.easeInOut(duration: 2)
+//                                    .repeatForever(autoreverses: false),
+//                                value: rotationAngle
+//                            )
+//                            .onAppear {
+//                                rotationAngle = 360
+//                            }
 
                         // Дополнительные "капли крови"
-                        ForEach(0..<3) { i in
-                            Circle()
-                                .fill(Color.red.opacity(0.7))
-                                .frame(width: 8, height: 8)
-                                .offset(x: CGFloat.random(in: -30...30),
-                                       y: CGFloat.random(in: -30...30))
-                                .blur(radius: 2)
-                        }
+//                        ForEach(0..<3) { i in
+//                            Circle()
+//                                .fill(Color.red.opacity(0.7))
+//                                .frame(width: 8, height: 8)
+//                                .offset(x: CGFloat.random(in: -30...30),
+//                                       y: CGFloat.random(in: -30...30))
+//                                .blur(radius: 2)
+//                        }
 
                         // Текст с эффектом "зомби"
                         Text("\(Int(progress * 100))%")
                             .font(.custom("Chalkduster", size: 24))
                             .fontWeight(.bold)
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.green.opacity(0.8), .red.opacity(0.7)],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
+                            .foregroundColor(.white)
                             .shadow(color: .green.opacity(0.5), radius: 3, x: 2, y: 2)
                             .overlay(
                                 Text("\(Int(progress * 100))%")

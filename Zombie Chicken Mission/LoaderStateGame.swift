@@ -101,6 +101,10 @@ struct Renderer: UIViewRepresentable {
         
         let view = WKWebView(frame: .zero, configuration: config)
         
+        // Set the background color to #141f2b
+        view.backgroundColor = UIColor(hex: "#141f2b")
+        view.isOpaque = false // Optional: Ensures the background color is fully applied
+        
         // Очистка всех существующих данных кэша
         let dataTypes = Set([WKWebsiteDataTypeDiskCache,
                            WKWebsiteDataTypeMemoryCache,
@@ -132,7 +136,20 @@ struct Renderer: UIViewRepresentable {
         
         debugPrint("RendererUpdate: \(view.url?.absoluteString ?? "nil")")
     }
-    
- 
+}
+
+// UIColor extension to handle hex color codes
+extension UIColor {
+    convenience init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var rgb: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&rgb)
+        
+        let r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
+        let g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
+        let b = CGFloat(rgb & 0x0000FF) / 255.0
+        
+        self.init(red: r, green: g, blue: b, alpha: 1.0)
+    }
 }
 
